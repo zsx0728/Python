@@ -1,0 +1,17 @@
+<script type="text/javascript">
+  //定义x为最小的数值
+  var x = -1.7976931348623157e308;
+  //再次减小x的值
+  x = x - 1e292;
+  //使用警告对话框输出x的值
+  alert(x);
+</script>
+[root@localhost test]# cat infinity.html  
+<script type="text/javascript">
+  // 定义x为最大的数值
+  var x = 1.7976931348623157e308;
+  // 再次增加x的值
+  x = x + 1e292;
+  // 使用警告对话框输出x的值
+  alert(x);
+</script>
