@@ -1,0 +1,14 @@
+<script type="text/javascript">
+  function Person(name, age)
+  {
+    this.name = name;
+    this.age = age;
+    this.info = function()
+    {
+      document.writeln("my name is: " + this.name + "<br />");
+      document.writeln("my age is: " + this.age + "<br />");
+    }
+  }
+  var p = new Person('yeeku', 29);
+  p.info();
+</script>
