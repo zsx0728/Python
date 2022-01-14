@@ -1,0 +1,17 @@
+<head>
+  <meta charset=UTF-8>
+</head>
+<script type="text/javascript">
+  function Person(name)
+  {
+    this.name = name;
+    this.info = function()
+    {
+      alert("my name is: " + this.name);
+    }
+  }
+  var p = new Person("yeeku");
+  p.info();
+  var name = "测试名称";
+  p.info.call(window);
+</script>
