@@ -1,0 +1,21 @@
+<script type="text/javascript">
+  function Dog(name, age, bark)
+  {
+    this.name = name;
+    this.age = age;
+    this.bark = bark;
+    this.info = function()
+    {
+      return this.name + " tha age is: " + this.age
+        + " ,it's bark: " + this.bark;
+    }
+  }
+  var dog = new Dog("wangcai", 3, 'wangwang, wangwang...');
+  function Cat(name, age)
+  {
+    this.name = name;
+    this.age = age;
+  }
+  var cat = new Cat("kitty", 2);
+  alert(dog.info.call(cat));
+</script>
