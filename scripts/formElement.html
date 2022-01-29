@@ -1,0 +1,23 @@
+<head>
+  <meta charset=UTF-8>
+</head>
+<body>
+<input id="user" type="text" /><br />
+<input id="pass" type="password" /><br />
+<textarea id="intro"></textarea><br />
+<select id="gender" size="3" style="width:80px">
+  <option value="male" selected>男</option>
+  <option value="female">女</option>
+</select><p>
+<input id="pass" type="checkbox" checked value="xx" /><br />
+<script type="text/javascript" src="jquery-3.1.1.js">
+</script>
+<script type="text/javascript">
+//获取所有的input、textarea、button元素
+$(":input:not('select')").val("test");
+//获取所有指定了selected属性的元素
+$(":selected").css("border" , "2px dashed black");
+//获取所有指定了checked属性的元素，并取消它们的选中状态
+$(":checked").prop("checked" , false);
+</script>
+</body>
