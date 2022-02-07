@@ -1,0 +1,72 @@
+<head>
+  <meta charset=UTF-8>
+</head>
+<body>
+<div>疯狂Java讲义</div>
+<div>轻量级Java EE企业应用实战</div>
+<script type="text/javascript" src="jquery-3.1.1.js">
+</script>
+<script type="text/javascript">
+(function($)
+{
+  var _patterns = 
+  {
+    "msie": "progid:DXImageTransform.Microsoft.Gradient(" +
+      "StartColorStr='{0}', EndColorStr='{1}', GradientType=0)",
+    "mozilla": "-moz-linear-gradient(top, {0} 0%, {1} 100%)",
+    "opera": "-o-linear-gradient(top, {0} 0%, {1} 100%)",
+    "webkit": "-webkit-linear-gradient(top, {0} 0%, {1} 100%)",
+    "unknown": "-ms-linear-gradient(top, {0} 0%, {1} 100%)"
+  };
+  //定义一个获取浏览器名称的函数
+  var browserName = function()
+  {
+    if (/firefox/.test(navigator.userAgent.toLowerCase()))
+      return "mozilla";
+    else if (/opera/.test(navigator.userAgent.toLowerCase()))
+      return "opera";
+    else if (/webkit/.test(navigator.userAgent.toLowerCase()))
+      return "webkit";
+    //判断是否为早期版本的IE
+    else if (/msie/.test(navigator.userAgent.toLowerCase()))
+      return "msie"
+    else return "unknown";
+  }
+  //定义函数，针对不同浏览器生成不同CSS属性值
+  var genCssString = function(colorStr, browser)
+  {
+    //获取不同浏览器对应的CSS属性值模板
+    var reStr = _patterns[browser];
+    if (!reStr) return null;
+    //将colors按逗号分隔成两个字符串
+    var colors = colorStr.split(',');
+    if (colors.length != 2) return;
+    //将{0}占位符替换成colors[0]
+    //将{1}占位符替换成colors[1]
+    return reStr.replace(/\{0\}/, colors[0])
+      .replace(/\{1\}/, colors[1]);
+  };
+  $.cssHooks["lineGradBackground"] = 
+  {
+    get: function (elem, computed, extra)
+    {
+      return elem.style.background;
+    },
+    set: function (elem, value)
+    {
+      //获取浏览器版本
+      var b = browserName();
+      //根据不同浏览器设置不同的background属性值
+      //对于早期版本的IE浏览器，应该使用filter属性
+      elem.style[b == "msie" ? "filter" : "background"]
+        = genCssString(value, b);
+    }
+  };
+})(jQuery);
+$("body>div").width(300)
+  .height(40)
+  .css("padding" , 30);
+$("body>div:first").css("lineGradBackground", "#e2f, #efe");
+$("body>div:last").css("lineGradBackground", "#fff, #111");
+</script>
+</body>
